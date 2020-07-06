@@ -16,5 +16,10 @@ namespace CarReportSystem
         {
             InitializeComponent();
         }
+
+        private void btAdd_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
