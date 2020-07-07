@@ -29,33 +29,37 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.dtpTimeData = new System.Windows.Forms.DateTimePicker();
+            this.dtpCreatedDate = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.cbbReporter = new System.Windows.Forms.ComboBox();
-            this.cbbCarName = new System.Windows.Forms.ComboBox();
-            this.cbToyota = new System.Windows.Forms.CheckBox();
-            this.cbNissan = new System.Windows.Forms.CheckBox();
-            this.cbHonda = new System.Windows.Forms.CheckBox();
-            this.cbSubaru = new System.Windows.Forms.CheckBox();
-            this.cbGaisya = new System.Windows.Forms.CheckBox();
-            this.cbAnother = new System.Windows.Forms.CheckBox();
+            this.cbAuthor = new System.Windows.Forms.ComboBox();
+            this.cbCarName = new System.Windows.Forms.ComboBox();
             this.tbReport = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.dgvCarReportData = new System.Windows.Forms.DataGridView();
             this.btOpen = new System.Windows.Forms.Button();
             this.btSave = new System.Windows.Forms.Button();
-            this.pbCar = new System.Windows.Forms.PictureBox();
+            this.pbPicture = new System.Windows.Forms.PictureBox();
             this.btAdd = new System.Windows.Forms.Button();
             this.btFix = new System.Windows.Forms.Button();
             this.btDelete = new System.Windows.Forms.Button();
             this.btPictureOpen = new System.Windows.Forms.Button();
             this.btPictureDelete = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
+            this.gbMaker = new System.Windows.Forms.GroupBox();
+            this.rbAnother = new System.Windows.Forms.RadioButton();
+            this.rbGaisya = new System.Windows.Forms.RadioButton();
+            this.rbSubaru = new System.Windows.Forms.RadioButton();
+            this.rbHonda = new System.Windows.Forms.RadioButton();
+            this.rbNissan = new System.Windows.Forms.RadioButton();
+            this.rbToyota = new System.Windows.Forms.RadioButton();
+            this.btEnd = new System.Windows.Forms.Button();
+            this.ofdPicture = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarReportData)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbCar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbPicture)).BeginInit();
+            this.gbMaker.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -67,12 +71,12 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "日付：";
             // 
-            // dtpTimeData
+            // dtpCreatedDate
             // 
-            this.dtpTimeData.Location = new System.Drawing.Point(99, 17);
-            this.dtpTimeData.Name = "dtpTimeData";
-            this.dtpTimeData.Size = new System.Drawing.Size(200, 19);
-            this.dtpTimeData.TabIndex = 1;
+            this.dtpCreatedDate.Location = new System.Drawing.Point(99, 17);
+            this.dtpCreatedDate.Name = "dtpCreatedDate";
+            this.dtpCreatedDate.Size = new System.Drawing.Size(200, 19);
+            this.dtpCreatedDate.TabIndex = 1;
             // 
             // label2
             // 
@@ -110,81 +114,21 @@
             this.label5.TabIndex = 0;
             this.label5.Text = "レポート：";
             // 
-            // cbbReporter
+            // cbAuthor
             // 
-            this.cbbReporter.FormattingEnabled = true;
-            this.cbbReporter.Location = new System.Drawing.Point(99, 56);
-            this.cbbReporter.Name = "cbbReporter";
-            this.cbbReporter.Size = new System.Drawing.Size(253, 20);
-            this.cbbReporter.TabIndex = 2;
+            this.cbAuthor.FormattingEnabled = true;
+            this.cbAuthor.Location = new System.Drawing.Point(99, 56);
+            this.cbAuthor.Name = "cbAuthor";
+            this.cbAuthor.Size = new System.Drawing.Size(253, 20);
+            this.cbAuthor.TabIndex = 2;
             // 
-            // cbbCarName
+            // cbCarName
             // 
-            this.cbbCarName.FormattingEnabled = true;
-            this.cbbCarName.Location = new System.Drawing.Point(99, 137);
-            this.cbbCarName.Name = "cbbCarName";
-            this.cbbCarName.Size = new System.Drawing.Size(253, 20);
-            this.cbbCarName.TabIndex = 2;
-            // 
-            // cbToyota
-            // 
-            this.cbToyota.AutoSize = true;
-            this.cbToyota.Location = new System.Drawing.Point(99, 97);
-            this.cbToyota.Name = "cbToyota";
-            this.cbToyota.Size = new System.Drawing.Size(48, 16);
-            this.cbToyota.TabIndex = 3;
-            this.cbToyota.Text = "トヨタ";
-            this.cbToyota.UseVisualStyleBackColor = true;
-            // 
-            // cbNissan
-            // 
-            this.cbNissan.AutoSize = true;
-            this.cbNissan.Location = new System.Drawing.Point(153, 97);
-            this.cbNissan.Name = "cbNissan";
-            this.cbNissan.Size = new System.Drawing.Size(48, 16);
-            this.cbNissan.TabIndex = 3;
-            this.cbNissan.Text = "日産";
-            this.cbNissan.UseVisualStyleBackColor = true;
-            // 
-            // cbHonda
-            // 
-            this.cbHonda.AutoSize = true;
-            this.cbHonda.Location = new System.Drawing.Point(207, 97);
-            this.cbHonda.Name = "cbHonda";
-            this.cbHonda.Size = new System.Drawing.Size(52, 16);
-            this.cbHonda.TabIndex = 3;
-            this.cbHonda.Text = "ホンダ";
-            this.cbHonda.UseVisualStyleBackColor = true;
-            // 
-            // cbSubaru
-            // 
-            this.cbSubaru.AutoSize = true;
-            this.cbSubaru.Location = new System.Drawing.Point(261, 98);
-            this.cbSubaru.Name = "cbSubaru";
-            this.cbSubaru.Size = new System.Drawing.Size(53, 16);
-            this.cbSubaru.TabIndex = 3;
-            this.cbSubaru.Text = "スバル";
-            this.cbSubaru.UseVisualStyleBackColor = true;
-            // 
-            // cbGaisya
-            // 
-            this.cbGaisya.AutoSize = true;
-            this.cbGaisya.Location = new System.Drawing.Point(320, 98);
-            this.cbGaisya.Name = "cbGaisya";
-            this.cbGaisya.Size = new System.Drawing.Size(48, 16);
-            this.cbGaisya.TabIndex = 3;
-            this.cbGaisya.Text = "外車";
-            this.cbGaisya.UseVisualStyleBackColor = true;
-            // 
-            // cbAnother
-            // 
-            this.cbAnother.AutoSize = true;
-            this.cbAnother.Location = new System.Drawing.Point(379, 98);
-            this.cbAnother.Name = "cbAnother";
-            this.cbAnother.Size = new System.Drawing.Size(55, 16);
-            this.cbAnother.TabIndex = 3;
-            this.cbAnother.Text = "その他";
-            this.cbAnother.UseVisualStyleBackColor = true;
+            this.cbCarName.FormattingEnabled = true;
+            this.cbCarName.Location = new System.Drawing.Point(99, 137);
+            this.cbCarName.Name = "cbCarName";
+            this.cbCarName.Size = new System.Drawing.Size(253, 20);
+            this.cbCarName.TabIndex = 2;
             // 
             // tbReport
             // 
@@ -206,12 +150,17 @@
             // 
             // dgvCarReportData
             // 
+            this.dgvCarReportData.AllowUserToAddRows = false;
             this.dgvCarReportData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCarReportData.Location = new System.Drawing.Point(99, 319);
+            this.dgvCarReportData.MultiSelect = false;
             this.dgvCarReportData.Name = "dgvCarReportData";
+            this.dgvCarReportData.ReadOnly = true;
             this.dgvCarReportData.RowTemplate.Height = 21;
+            this.dgvCarReportData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvCarReportData.Size = new System.Drawing.Size(644, 188);
             this.dgvCarReportData.TabIndex = 5;
+            this.dgvCarReportData.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCarReportData_CellContentClick);
             // 
             // btOpen
             // 
@@ -231,13 +180,14 @@
             this.btSave.Text = "保存";
             this.btSave.UseVisualStyleBackColor = true;
             // 
-            // pbCar
+            // pbPicture
             // 
-            this.pbCar.Location = new System.Drawing.Point(506, 44);
-            this.pbCar.Name = "pbCar";
-            this.pbCar.Size = new System.Drawing.Size(237, 229);
-            this.pbCar.TabIndex = 7;
-            this.pbCar.TabStop = false;
+            this.pbPicture.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pbPicture.Location = new System.Drawing.Point(506, 44);
+            this.pbPicture.Name = "pbPicture";
+            this.pbPicture.Size = new System.Drawing.Size(237, 229);
+            this.pbPicture.TabIndex = 7;
+            this.pbPicture.TabStop = false;
             // 
             // btAdd
             // 
@@ -257,6 +207,7 @@
             this.btFix.TabIndex = 6;
             this.btFix.Text = "修正";
             this.btFix.UseVisualStyleBackColor = true;
+            this.btFix.Click += new System.EventHandler(this.btFix_Click);
             // 
             // btDelete
             // 
@@ -266,6 +217,7 @@
             this.btDelete.TabIndex = 6;
             this.btDelete.Text = "削除";
             this.btDelete.UseVisualStyleBackColor = true;
+            this.btDelete.Click += new System.EventHandler(this.btDelete_Click);
             // 
             // btPictureOpen
             // 
@@ -275,6 +227,7 @@
             this.btPictureOpen.TabIndex = 6;
             this.btPictureOpen.Text = "開く";
             this.btPictureOpen.UseVisualStyleBackColor = true;
+            this.btPictureOpen.Click += new System.EventHandler(this.btPictureOpen_Click);
             // 
             // btPictureDelete
             // 
@@ -284,6 +237,7 @@
             this.btPictureDelete.TabIndex = 6;
             this.btPictureDelete.Text = "削除";
             this.btPictureDelete.UseVisualStyleBackColor = true;
+            this.btPictureDelete.Click += new System.EventHandler(this.btPictureDelete_Click);
             // 
             // label7
             // 
@@ -294,30 +248,120 @@
             this.label7.TabIndex = 0;
             this.label7.Text = "画像：";
             // 
+            // gbMaker
+            // 
+            this.gbMaker.Controls.Add(this.rbAnother);
+            this.gbMaker.Controls.Add(this.rbGaisya);
+            this.gbMaker.Controls.Add(this.rbSubaru);
+            this.gbMaker.Controls.Add(this.rbHonda);
+            this.gbMaker.Controls.Add(this.rbNissan);
+            this.gbMaker.Controls.Add(this.rbToyota);
+            this.gbMaker.Location = new System.Drawing.Point(99, 83);
+            this.gbMaker.Name = "gbMaker";
+            this.gbMaker.Size = new System.Drawing.Size(336, 35);
+            this.gbMaker.TabIndex = 8;
+            this.gbMaker.TabStop = false;
+            // 
+            // rbAnother
+            // 
+            this.rbAnother.AutoSize = true;
+            this.rbAnother.Location = new System.Drawing.Point(265, 10);
+            this.rbAnother.Name = "rbAnother";
+            this.rbAnother.Size = new System.Drawing.Size(54, 16);
+            this.rbAnother.TabIndex = 0;
+            this.rbAnother.Tag = "5";
+            this.rbAnother.Text = "その他";
+            this.rbAnother.UseVisualStyleBackColor = true;
+            // 
+            // rbGaisya
+            // 
+            this.rbGaisya.AutoSize = true;
+            this.rbGaisya.Location = new System.Drawing.Point(212, 10);
+            this.rbGaisya.Name = "rbGaisya";
+            this.rbGaisya.Size = new System.Drawing.Size(47, 16);
+            this.rbGaisya.TabIndex = 0;
+            this.rbGaisya.Tag = "4";
+            this.rbGaisya.Text = "外車";
+            this.rbGaisya.UseVisualStyleBackColor = true;
+            // 
+            // rbSubaru
+            // 
+            this.rbSubaru.AutoSize = true;
+            this.rbSubaru.Location = new System.Drawing.Point(159, 11);
+            this.rbSubaru.Name = "rbSubaru";
+            this.rbSubaru.Size = new System.Drawing.Size(52, 16);
+            this.rbSubaru.TabIndex = 0;
+            this.rbSubaru.Tag = "3";
+            this.rbSubaru.Text = "スバル";
+            this.rbSubaru.UseVisualStyleBackColor = true;
+            // 
+            // rbHonda
+            // 
+            this.rbHonda.AutoSize = true;
+            this.rbHonda.Location = new System.Drawing.Point(106, 10);
+            this.rbHonda.Name = "rbHonda";
+            this.rbHonda.Size = new System.Drawing.Size(51, 16);
+            this.rbHonda.TabIndex = 0;
+            this.rbHonda.Tag = "2";
+            this.rbHonda.Text = "ホンダ";
+            this.rbHonda.UseVisualStyleBackColor = true;
+            // 
+            // rbNissan
+            // 
+            this.rbNissan.AutoSize = true;
+            this.rbNissan.Location = new System.Drawing.Point(53, 10);
+            this.rbNissan.Name = "rbNissan";
+            this.rbNissan.Size = new System.Drawing.Size(47, 16);
+            this.rbNissan.TabIndex = 0;
+            this.rbNissan.Tag = "1";
+            this.rbNissan.Text = "日産";
+            this.rbNissan.UseVisualStyleBackColor = true;
+            // 
+            // rbToyota
+            // 
+            this.rbToyota.AutoSize = true;
+            this.rbToyota.Location = new System.Drawing.Point(0, 11);
+            this.rbToyota.Name = "rbToyota";
+            this.rbToyota.Size = new System.Drawing.Size(47, 16);
+            this.rbToyota.TabIndex = 0;
+            this.rbToyota.Tag = "0";
+            this.rbToyota.Text = "トヨタ";
+            this.rbToyota.UseVisualStyleBackColor = true;
+            // 
+            // btEnd
+            // 
+            this.btEnd.Location = new System.Drawing.Point(672, 513);
+            this.btEnd.Name = "btEnd";
+            this.btEnd.Size = new System.Drawing.Size(71, 35);
+            this.btEnd.TabIndex = 6;
+            this.btEnd.Text = "終了";
+            this.btEnd.UseVisualStyleBackColor = true;
+            this.btEnd.Click += new System.EventHandler(this.btEnd_Click);
+            // 
+            // ofdPicture
+            // 
+            this.ofdPicture.FileName = "openFileDialog1";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(755, 525);
-            this.Controls.Add(this.pbCar);
+            this.ClientSize = new System.Drawing.Size(755, 551);
+            this.Controls.Add(this.gbMaker);
+            this.Controls.Add(this.pbPicture);
             this.Controls.Add(this.btSave);
             this.Controls.Add(this.btPictureDelete);
             this.Controls.Add(this.btPictureOpen);
             this.Controls.Add(this.btDelete);
             this.Controls.Add(this.btFix);
             this.Controls.Add(this.btAdd);
+            this.Controls.Add(this.btEnd);
             this.Controls.Add(this.btOpen);
             this.Controls.Add(this.dgvCarReportData);
             this.Controls.Add(this.tbReport);
-            this.Controls.Add(this.cbAnother);
-            this.Controls.Add(this.cbGaisya);
-            this.Controls.Add(this.cbSubaru);
-            this.Controls.Add(this.cbHonda);
-            this.Controls.Add(this.cbNissan);
-            this.Controls.Add(this.cbToyota);
-            this.Controls.Add(this.cbbCarName);
-            this.Controls.Add(this.cbbReporter);
-            this.Controls.Add(this.dtpTimeData);
+            this.Controls.Add(this.cbCarName);
+            this.Controls.Add(this.cbAuthor);
+            this.Controls.Add(this.dtpCreatedDate);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -326,9 +370,11 @@
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label1);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "試乗レポート管理システム";
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarReportData)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbCar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbPicture)).EndInit();
+            this.gbMaker.ResumeLayout(false);
+            this.gbMaker.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -337,31 +383,34 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DateTimePicker dtpTimeData;
+        private System.Windows.Forms.DateTimePicker dtpCreatedDate;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox cbbReporter;
-        private System.Windows.Forms.ComboBox cbbCarName;
-        private System.Windows.Forms.CheckBox cbToyota;
-        private System.Windows.Forms.CheckBox cbNissan;
-        private System.Windows.Forms.CheckBox cbHonda;
-        private System.Windows.Forms.CheckBox cbSubaru;
-        private System.Windows.Forms.CheckBox cbGaisya;
-        private System.Windows.Forms.CheckBox cbAnother;
+        private System.Windows.Forms.ComboBox cbAuthor;
+        private System.Windows.Forms.ComboBox cbCarName;
         private System.Windows.Forms.TextBox tbReport;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DataGridView dgvCarReportData;
         private System.Windows.Forms.Button btOpen;
         private System.Windows.Forms.Button btSave;
-        private System.Windows.Forms.PictureBox pbCar;
+        private System.Windows.Forms.PictureBox pbPicture;
         private System.Windows.Forms.Button btAdd;
         private System.Windows.Forms.Button btFix;
         private System.Windows.Forms.Button btDelete;
         private System.Windows.Forms.Button btPictureOpen;
         private System.Windows.Forms.Button btPictureDelete;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.GroupBox gbMaker;
+        private System.Windows.Forms.RadioButton rbAnother;
+        private System.Windows.Forms.RadioButton rbGaisya;
+        private System.Windows.Forms.RadioButton rbSubaru;
+        private System.Windows.Forms.RadioButton rbHonda;
+        private System.Windows.Forms.RadioButton rbNissan;
+        private System.Windows.Forms.RadioButton rbToyota;
+        private System.Windows.Forms.Button btEnd;
+        private System.Windows.Forms.OpenFileDialog ofdPicture;
     }
 }
 
