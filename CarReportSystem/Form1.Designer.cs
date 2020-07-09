@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.dtpCreatedDate = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
@@ -59,13 +58,11 @@
             this.btEnd = new System.Windows.Forms.Button();
             this.ofdPicture = new System.Windows.Forms.OpenFileDialog();
             this.ofdOpenData = new System.Windows.Forms.OpenFileDialog();
-            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.sfdSaveData = new System.Windows.Forms.SaveFileDialog();
             this.btnewdata = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarReportData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbPicture)).BeginInit();
             this.gbMaker.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -403,7 +400,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbPicture)).EndInit();
             this.gbMaker.ResumeLayout(false);
             this.gbMaker.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -441,7 +437,6 @@
         private System.Windows.Forms.Button btEnd;
         private System.Windows.Forms.OpenFileDialog ofdPicture;
         private System.Windows.Forms.OpenFileDialog ofdOpenData;
-        private System.Windows.Forms.BindingSource bindingSource1;
         private System.Windows.Forms.SaveFileDialog sfdSaveData;
         private System.Windows.Forms.Button btnewdata;
     }
