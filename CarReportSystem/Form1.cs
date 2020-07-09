@@ -34,12 +34,33 @@ namespace CarReportSystem
                 Report = tbReport.Text,
                 Picture = pbPicture.Image
             };
+            setCombobox(cbAuthor.Text,cbCarName.Text);
             
             _carReports.Insert(0, carReport);
             InitedAllClear();
             dgvCarReportData.ClearSelection();
 
         }
+        
+        //コンボボックスに候補の追加
+        private void setCombobox(string author,string name)
+        {
+            if (!string.IsNullOrWhiteSpace(author))
+            {
+                if (!cbAuthor.Items.Contains(author))
+                {
+                    cbAuthor.Items.Add(author);
+                }
+            }
+            if (!string.IsNullOrWhiteSpace(name))
+            {
+                if (!cbCarName.Items.Contains(name))
+                {
+                    cbCarName.Items.Add(name);
+                }
+            }
+        }
+        
         //選択
         private void dgvCarReportData_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -109,7 +130,61 @@ namespace CarReportSystem
         //削除
         private void btDelete_Click(object sender, EventArgs e)
         {
+            foreach (DataGridViewRow row in this.dgvCarReportData.SelectedRows)
+            {
+                dgvCarReportData.Rows.Remove(row);
+            }
             InitedAllClear();
+        }
+
+        //開く
+        private void btOpen_Click(object sender, EventArgs e)
+        {
+            if (ofdOpenData.ShowDialog() == DialogResult.OK)
+            {
+
+                using (FileStream fs = new FileStream(ofdOpenData.FileName, FileMode.Open))
+                {
+                    try
+                    {
+                        BinaryFormatter formatter = new BinaryFormatter();
+
+                        //逆シリアル化して読み込む
+                        _carReports = (BindingList<CarReport>)formatter.Deserialize(fs);
+                        dgvCarReportData.DataSource = _carReports;
+                        //dgvCarData_Click(sender, e);
+                        // 選択を解除
+                        dgvCarReportData.ClearSelection();
+
+                    } catch (SerializationException se)
+                    {
+                        Console.WriteLine("Failed to deserialize. Reason: " + se.Message);
+                        throw;
+                    }
+                }
+            }
+        }
+
+        //保存
+        private void btSave_Click(object sender, EventArgs e)
+        {
+            if (sfdSaveData.ShowDialog() == DialogResult.OK)
+            {
+                BinaryFormatter formatter = new BinaryFormatter();
+
+                using (FileStream fs = new FileStream(sfdSaveData.FileName, FileMode.Create))
+                {
+                    try
+                    {
+                        //シリアル化して保存
+                        formatter.Serialize(fs, _carReports);
+                    } catch (SerializationException se)
+                    {
+                        Console.WriteLine("Failed to serialize. Reason: " + se.Message);
+                        throw;
+                    }
+                }
+            }
         }
 
         //終了
@@ -122,30 +197,30 @@ namespace CarReportSystem
         private CarReport.CarMaker carmaker()
         {
             //LINQとラムダ式を使用
-            RadioButton selectMaker = (gbMaker.Controls.Cast<RadioButton>().FirstOrDefault(rb => rb.Checked));
-            return (CarReport.CarMaker)int.Parse(selectMaker.Tag.ToString());
+            //RadioButton selectMaker = (gbMaker.Controls.Cast<RadioButton>().FirstOrDefault(rb => rb.Checked));
+            //return (CarReport.CarMaker)int.Parse(selectMaker.Tag.ToString());
 
-            //CarReport.CarMaker sentaku = null;
-            //if (rbToyota.Checked)
-            //{
-            //    sentaku = CarReport.CarMaker.トヨタ;
-            //} else if (rbSubaru.Checked)
-            //{
-            //    sentaku = CarReport.CarMaker.スバル;
-            //} else if (rbNissan.Checked)
-            //{
-            //    sentaku = CarReport.CarMaker.日産;
-            //} else if (rbHonda.Checked)
-            //{
-            //    sentaku = CarReport.CarMaker.ホンダ;
-            //} else if (rbGaisya.Checked)
-            //{
-            //    sentaku = CarReport.CarMaker.外車;
-            //} else if (rbAnother.Checked)
-            //{
-            //    sentaku = CarReport.CarMaker.その他;
-            //}
-            //return sentaku;
+            CarReport.CarMaker sentaku = 0;
+            if (rbToyota.Checked)
+            {
+                sentaku = CarReport.CarMaker.トヨタ;
+            } else if (rbSubaru.Checked)
+            {
+                sentaku = CarReport.CarMaker.スバル;
+            } else if (rbNissan.Checked)
+            {
+                sentaku = CarReport.CarMaker.日産;
+            } else if (rbHonda.Checked)
+            {
+                sentaku = CarReport.CarMaker.ホンダ;
+            } else if (rbGaisya.Checked)
+            {
+                sentaku = CarReport.CarMaker.外車;
+            } else if (rbAnother.Checked)
+            {
+                sentaku = CarReport.CarMaker.その他;
+            }
+            return sentaku;
         }
 
         //選択行のラジオボタンをオンにする
@@ -198,26 +273,6 @@ namespace CarReportSystem
             }
         }
 
-        //保存
-        private void btSave_Click(object sender, EventArgs e)
-        {
-            if (sfdSaveData.ShowDialog() == DialogResult.OK)
-            {
-                BinaryFormatter formatter = new BinaryFormatter();
 
-                using (FileStream fs = new FileStream(sfdSaveData.FileName, FileMode.Create))
-                {
-                    try
-                    {
-                        //シリアル化して保存
-                        formatter.Serialize(fs, _carReports);
-                    } catch (SerializationException se)
-                    {
-                        Console.WriteLine("Failed to serialize. Reason: " + se.Message);
-                        throw;
-                    }
-                }
-            }
-        }
     }
 }

@@ -156,6 +156,7 @@
             // dgvCarReportData
             // 
             this.dgvCarReportData.AllowUserToAddRows = false;
+            this.dgvCarReportData.AllowUserToDeleteRows = false;
             this.dgvCarReportData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCarReportData.Location = new System.Drawing.Point(99, 319);
             this.dgvCarReportData.MultiSelect = false;
@@ -165,6 +166,7 @@
             this.dgvCarReportData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvCarReportData.Size = new System.Drawing.Size(644, 188);
             this.dgvCarReportData.TabIndex = 5;
+            this.dgvCarReportData.TabStop = false;
             this.dgvCarReportData.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCarReportData_CellContentClick);
             // 
             // btOpen
@@ -175,6 +177,7 @@
             this.btOpen.TabIndex = 6;
             this.btOpen.Text = "開く";
             this.btOpen.UseVisualStyleBackColor = true;
+            this.btOpen.Click += new System.EventHandler(this.btOpen_Click);
             // 
             // btSave
             // 

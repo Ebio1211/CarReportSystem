@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace CarReportSystem
 {
+    [Serializable]
     class CarReport
     {
         [System.ComponentModel.DisplayName("作成日")]
