@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.dtpCreatedDate = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
@@ -57,9 +58,13 @@
             this.rbToyota = new System.Windows.Forms.RadioButton();
             this.btEnd = new System.Windows.Forms.Button();
             this.ofdPicture = new System.Windows.Forms.OpenFileDialog();
+            this.ofdOpenData = new System.Windows.Forms.OpenFileDialog();
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.sfdSaveData = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarReportData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbPicture)).BeginInit();
             this.gbMaker.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -179,6 +184,7 @@
             this.btSave.TabIndex = 6;
             this.btSave.Text = "保存";
             this.btSave.UseVisualStyleBackColor = true;
+            this.btSave.Click += new System.EventHandler(this.btSave_Click);
             // 
             // pbPicture
             // 
@@ -342,6 +348,10 @@
             // 
             this.ofdPicture.FileName = "openFileDialog1";
             // 
+            // ofdOpenData
+            // 
+            this.ofdOpenData.FileName = "openFileDialog1";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -375,6 +385,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbPicture)).EndInit();
             this.gbMaker.ResumeLayout(false);
             this.gbMaker.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -411,6 +422,9 @@
         private System.Windows.Forms.RadioButton rbToyota;
         private System.Windows.Forms.Button btEnd;
         private System.Windows.Forms.OpenFileDialog ofdPicture;
+        private System.Windows.Forms.OpenFileDialog ofdOpenData;
+        private System.Windows.Forms.BindingSource bindingSource1;
+        private System.Windows.Forms.SaveFileDialog sfdSaveData;
     }
 }
 

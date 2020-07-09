@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -118,9 +121,9 @@ namespace CarReportSystem
         //ラジオボタン判定式
         private CarReport.CarMaker carmaker()
         {
-
-            RadioButton selecstionmaker = (gbMaker.Controls.Cast<RadioButton>().FirstOrDefault(rb => rb.Checked));
-            return (CarReport.CarMaker)int.Parse(selecstionmaker.Tag.ToString());
+            //LINQとラムダ式を使用
+            RadioButton selectMaker = (gbMaker.Controls.Cast<RadioButton>().FirstOrDefault(rb => rb.Checked));
+            return (CarReport.CarMaker)int.Parse(selectMaker.Tag.ToString());
 
             //CarReport.CarMaker sentaku = null;
             //if (rbToyota.Checked)
@@ -195,6 +198,26 @@ namespace CarReportSystem
             }
         }
 
+        //保存
+        private void btSave_Click(object sender, EventArgs e)
+        {
+            if (sfdSaveData.ShowDialog() == DialogResult.OK)
+            {
+                BinaryFormatter formatter = new BinaryFormatter();
 
+                using (FileStream fs = new FileStream(sfdSaveData.FileName, FileMode.Create))
+                {
+                    try
+                    {
+                        //シリアル化して保存
+                        formatter.Serialize(fs, _carReports);
+                    } catch (SerializationException se)
+                    {
+                        Console.WriteLine("Failed to serialize. Reason: " + se.Message);
+                        throw;
+                    }
+                }
+            }
+        }
     }
 }
