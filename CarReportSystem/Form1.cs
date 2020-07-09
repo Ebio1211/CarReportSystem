@@ -35,7 +35,7 @@ namespace CarReportSystem
                 Picture = pbPicture.Image
             };
             setCombobox(cbAuthor.Text,cbCarName.Text);
-            if (!string.IsNullOrWhiteSpace(cbAuthor.Text))
+            if (!string.IsNullOrWhiteSpace(cbAuthor.Text) && !string.IsNullOrWhiteSpace(cbCarName.Text))
             {
                 _carReports.Insert(0, carReport);
                 InitedAllClear();
@@ -44,7 +44,7 @@ namespace CarReportSystem
                 pictureButon();
             } else
             {
-                MessageBox.Show("記録者を入力してください", "エラーメッセージ");
+                MessageBox.Show("記録者と車名を入力してください", "エラーメッセージ");
             }
 
         }
