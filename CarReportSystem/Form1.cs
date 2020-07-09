@@ -108,6 +108,7 @@ namespace CarReportSystem
             }
             initButon();
             pictureButon();
+            dgvCarReportData.ClearSelection();
         }
 
         //入力項目の削除
@@ -147,6 +148,7 @@ namespace CarReportSystem
                 dgvCarReportData.Rows.Remove(row);
             }
             InitedAllClear();
+            dgvCarReportData.ClearSelection();
         }
 
         //読み込み
