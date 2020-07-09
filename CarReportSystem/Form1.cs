@@ -22,7 +22,7 @@ namespace CarReportSystem
             InitializeComponent();
             dgvCarReportData.DataSource = _carReports;
         }
-
+        //データの登録
         private void btAdd_Click(object sender, EventArgs e)
         {
             CarReport carReport = new CarReport
@@ -35,10 +35,17 @@ namespace CarReportSystem
                 Picture = pbPicture.Image
             };
             setCombobox(cbAuthor.Text,cbCarName.Text);
-            
-            _carReports.Insert(0, carReport);
-            InitedAllClear();
-            dgvCarReportData.ClearSelection();
+            if (!string.IsNullOrWhiteSpace(cbAuthor.Text))
+            {
+                _carReports.Insert(0, carReport);
+                InitedAllClear();
+                dgvCarReportData.ClearSelection();
+                initButon();
+                pictureButon();
+            } else
+            {
+                MessageBox.Show("記録者を入力してください", "エラーメッセージ");
+            }
 
         }
         
@@ -60,9 +67,9 @@ namespace CarReportSystem
                 }
             }
         }
-        
+
         //選択
-        private void dgvCarReportData_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvCarReportData_Click(object sender, EventArgs e)
         {
             if (_carReports.Count != 0)
             {
@@ -75,6 +82,8 @@ namespace CarReportSystem
                 cbCarName.Text = selectedreport.Name;
                 tbReport.Text = selectedreport.Report;
                 pbPicture.Image = selectedreport.Picture;
+                initButon();
+                pictureButon();
             }
         }
 
@@ -97,7 +106,8 @@ namespace CarReportSystem
                 InitedAllClear();
                 dgvCarReportData.ClearSelection();
             }
-
+            initButon();
+            pictureButon();
         }
 
         //入力項目の削除
@@ -107,8 +117,9 @@ namespace CarReportSystem
             cbAuthor.Text = "";
             cbCarName.Text = "";
             tbReport.Text = "";
-            rbJudgmentoff();
             pbPicture.Image = null;
+            initButon();
+            pictureButon();
         }
 
         //画像の参照
@@ -117,7 +128,8 @@ namespace CarReportSystem
             if (ofdPicture.ShowDialog() == DialogResult.OK)
             {
                 pbPicture.Image = Image.FromFile(ofdPicture.FileName);
-                pbPicture.SizeMode = PictureBoxSizeMode.StretchImage;
+                pbSizemdoe();
+                pictureButon();
             }
         }
 
@@ -137,7 +149,7 @@ namespace CarReportSystem
             InitedAllClear();
         }
 
-        //開く
+        //読み込み
         private void btOpen_Click(object sender, EventArgs e)
         {
             if (ofdOpenData.ShowDialog() == DialogResult.OK)
@@ -162,29 +174,35 @@ namespace CarReportSystem
                         throw;
                     }
                 }
+                initButon();
+                pbSizemdoe();
             }
         }
 
         //保存
         private void btSave_Click(object sender, EventArgs e)
         {
-            if (sfdSaveData.ShowDialog() == DialogResult.OK)
+            if (_carReports.Count > 0)
             {
-                BinaryFormatter formatter = new BinaryFormatter();
-
-                using (FileStream fs = new FileStream(sfdSaveData.FileName, FileMode.Create))
+                if (sfdSaveData.ShowDialog() == DialogResult.OK)
                 {
-                    try
+                    BinaryFormatter formatter = new BinaryFormatter();
+
+                    using (FileStream fs = new FileStream(sfdSaveData.FileName, FileMode.Create))
                     {
-                        //シリアル化して保存
-                        formatter.Serialize(fs, _carReports);
-                    } catch (SerializationException se)
-                    {
-                        Console.WriteLine("Failed to serialize. Reason: " + se.Message);
-                        throw;
+                        try
+                        {
+                            //シリアル化して保存
+                            formatter.Serialize(fs, _carReports);
+                        } catch (SerializationException se)
+                        {
+                            Console.WriteLine("Failed to serialize. Reason: " + se.Message);
+                            throw;
+                        }
                     }
                 }
             }
+            
         }
 
         //終了
@@ -248,31 +266,65 @@ namespace CarReportSystem
             }
         }
 
-        //選択行のラジオボタンをオフにする
-        private void rbJudgmentoff()
+        //変更と削除と保存のボタンのマスク解除とマスク化メソッド
+        private void initButon()
         {
-            CarReport selectedreport = _carReports[dgvCarReportData.CurrentRow.Index];
-            if (selectedreport.Maker == CarReport.CarMaker.その他)
+            if (cbAuthor.Text == "")
             {
-                rbAnother.Checked = false;
-            } else if (selectedreport.Maker == CarReport.CarMaker.スバル)
+                btFix.Enabled = false;
+                btDelete.Enabled = false;
+            } else
             {
-                rbSubaru.Checked = false;
-            } else if (selectedreport.Maker == CarReport.CarMaker.トヨタ)
+                btFix.Enabled = true;
+                btDelete.Enabled = true;
+            }
+            if (_carReports.Count <= 0)
             {
-                rbToyota.Checked = false;
-            } else if (selectedreport.Maker == CarReport.CarMaker.外車)
+                btSave.Enabled = false;
+            } else
             {
-                rbGaisya.Checked = false;
-            } else if (selectedreport.Maker == CarReport.CarMaker.日産)
+                btSave.Enabled = true;
+            }
+            //if (_carReports.Count <= 0)
+            //{
+            //    btFix.Enabled = false;
+            //    btFix.Enabled = false;
+            //} else
+            //{
+            //    btFix.Enabled = true;
+            //    btDelete.Enabled = true;
+            //}
+        }
+        //写真をクリアするボタンのマスク解除とマスク化
+        private void pictureButon() 
+        {
+            if (pbPicture.Image == null)
             {
-                rbNissan.Checked = false;
-            } else if (selectedreport.Maker == CarReport.CarMaker.ホンダ)
+                btPictureDelete.Enabled = false;
+            } else
             {
-                rbHonda.Checked = false;
+                btPictureDelete.Enabled = true;
             }
         }
+        //画像のサイズ調整
+        private void pbSizemdoe()
+        {
+            //ピクチャーボックスのサイズに画像を調整
+            pbPicture.SizeMode = PictureBoxSizeMode.StretchImage;
+        }
 
-
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            initButon();
+            pictureButon();
+        }
+        //新規作成
+        private void btnewdata_Click(object sender, EventArgs e)
+        {
+            InitedAllClear();
+            _carReports.Clear();
+            initButon();
+            pictureButon();
+        }
     }
 }

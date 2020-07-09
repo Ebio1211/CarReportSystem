@@ -61,6 +61,7 @@
             this.ofdOpenData = new System.Windows.Forms.OpenFileDialog();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.sfdSaveData = new System.Windows.Forms.SaveFileDialog();
+            this.btnewdata = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarReportData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbPicture)).BeginInit();
             this.gbMaker.SuspendLayout();
@@ -167,7 +168,7 @@
             this.dgvCarReportData.Size = new System.Drawing.Size(644, 188);
             this.dgvCarReportData.TabIndex = 5;
             this.dgvCarReportData.TabStop = false;
-            this.dgvCarReportData.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCarReportData_CellContentClick);
+            this.dgvCarReportData.Click += new System.EventHandler(this.dgvCarReportData_Click);
             // 
             // btOpen
             // 
@@ -329,10 +330,12 @@
             // rbToyota
             // 
             this.rbToyota.AutoSize = true;
+            this.rbToyota.Checked = true;
             this.rbToyota.Location = new System.Drawing.Point(0, 11);
             this.rbToyota.Name = "rbToyota";
             this.rbToyota.Size = new System.Drawing.Size(47, 16);
             this.rbToyota.TabIndex = 0;
+            this.rbToyota.TabStop = true;
             this.rbToyota.Tag = "0";
             this.rbToyota.Text = "トヨタ";
             this.rbToyota.UseVisualStyleBackColor = true;
@@ -355,11 +358,22 @@
             // 
             this.ofdOpenData.FileName = "openFileDialog1";
             // 
+            // btnewdata
+            // 
+            this.btnewdata.Location = new System.Drawing.Point(99, 513);
+            this.btnewdata.Name = "btnewdata";
+            this.btnewdata.Size = new System.Drawing.Size(113, 35);
+            this.btnewdata.TabIndex = 9;
+            this.btnewdata.Text = "新規作成";
+            this.btnewdata.UseVisualStyleBackColor = true;
+            this.btnewdata.Click += new System.EventHandler(this.btnewdata_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(755, 551);
+            this.Controls.Add(this.btnewdata);
             this.Controls.Add(this.gbMaker);
             this.Controls.Add(this.pbPicture);
             this.Controls.Add(this.btSave);
@@ -384,6 +398,7 @@
             this.Controls.Add(this.label1);
             this.Name = "Form1";
             this.Text = "試乗レポート管理システム";
+            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarReportData)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbPicture)).EndInit();
             this.gbMaker.ResumeLayout(false);
@@ -428,6 +443,7 @@
         private System.Windows.Forms.OpenFileDialog ofdOpenData;
         private System.Windows.Forms.BindingSource bindingSource1;
         private System.Windows.Forms.SaveFileDialog sfdSaveData;
+        private System.Windows.Forms.Button btnewdata;
     }
 }
 
