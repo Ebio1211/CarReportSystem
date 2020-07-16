@@ -72,12 +72,19 @@ namespace CarReportSystem
         //選択
         private void dgvCarReportData_Click(object sender, EventArgs e)
         {
-            
 
-            if (_carReports.Count != 0)
+
+            if (dgvCarReportData != null)
             {
-                var test = dgvCarReportData.CurrentRow.Cells[3].Value;//選択している行の指定したセルの値を取得
-                /*行の選択
+                //選択したレコードのインデックスで指定した項目を取り出す。
+                var maker = dgvCarReportData.CurrentRow.Cells[3].Value;//選択している行の指定したセルの値を取得
+                rbJudgmenton();
+                initButon();
+            }
+
+            /*if (_carReports.Count != 0)
+            {
+                //行の選択
                 CarReport selectedreport = _carReports[dgvCarReportData.CurrentRow.Index];
                 //選択行の表示
                 dtpCreatedDate.Value = selectedreport.CreatedDate;
@@ -87,8 +94,8 @@ namespace CarReportSystem
                 tbReport.Text = selectedreport.Report;
                 pbPicture.Image = selectedreport.Picture;
                 initButon();
-                pictureButon();*/
-            }
+                pictureButon();
+            }*/
         }
 
         //修正
@@ -155,11 +162,12 @@ namespace CarReportSystem
             dgvCarReportData.ClearSelection();
         }
 
-        //読み込み
+        //データベースに接続
         private void btOpen_Click(object sender, EventArgs e)
         {
             this.carReportTableAdapter.Fill(this.infosys202026DataSet.CarReport);
             dgvCarReportData.ClearSelection();
+            
             //if (ofdOpenData.ShowDialog() == DialogResult.OK)
             //{
             //
@@ -252,26 +260,48 @@ namespace CarReportSystem
         //選択行のラジオボタンをオンにする
         private void rbJudgmenton()
         {
-            CarReport selectedreport = _carReports[dgvCarReportData.CurrentRow.Index];
-            if (selectedreport.Maker == CarReport.CarMaker.その他)
+            var maker = dgvCarReportData.CurrentRow.Cells[3].Value;
+
+            switch (maker.ToString())
             {
-                rbAnother.Checked = true;
-            } else if (selectedreport.Maker == CarReport.CarMaker.スバル)
+                case "スバル":
+                    rbSubaru.Checked = true;
+                    break;
+                case "外車":
+                    rbGaisya.Checked = true;
+                    break;
+                case "トヨタ":
+                    rbToyota.Checked = true;
+                    break;
+                case "日産":
+                    rbNissan.Checked = true;
+                    break;
+                case "ホンダ":
+                    rbHonda.Checked = true;
+                    break;
+                case"その他":
+                    rbAnother.Checked = true;
+                    break;
+            }
+            /*if (maker.ToString() == "スバル")
             {
                 rbSubaru.Checked = true;
-            } else if (selectedreport.Maker == CarReport.CarMaker.トヨタ)
+            } else if (maker.ToString() == "トヨタ")
             {
                 rbToyota.Checked = true;
-            } else if (selectedreport.Maker == CarReport.CarMaker.外車)
+            } else if (maker.ToString() == "外車")
             {
                 rbGaisya.Checked = true;
-            } else if (selectedreport.Maker == CarReport.CarMaker.日産)
+            } else if (maker.ToString() == "日産")
             {
                 rbNissan.Checked = true;
-            } else if (selectedreport.Maker == CarReport.CarMaker.ホンダ)
+            } else if (maker.ToString() =="ホンダ")
             {
                 rbHonda.Checked = true;
-            }
+            } else
+            {
+                rbAnother.Checked = true;
+            }*/
         }
 
         //変更と削除と保存のボタンのマスク解除とマスク化メソッド
@@ -345,5 +375,6 @@ namespace CarReportSystem
             this.tableAdapterManager.UpdateAll(this.infosys202026DataSet);
 
         }
+
     }
 }
