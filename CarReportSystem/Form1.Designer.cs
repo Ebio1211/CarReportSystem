@@ -144,7 +144,6 @@
             // 
             // cbAuthor
             // 
-            this.cbAuthor.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.carReportBindingSource, "Author", true));
             this.cbAuthor.FormattingEnabled = true;
             this.cbAuthor.Location = new System.Drawing.Point(99, 56);
             this.cbAuthor.Name = "cbAuthor";
@@ -153,7 +152,6 @@
             // 
             // cbCarName
             // 
-            this.cbCarName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.carReportBindingSource, "Name", true));
             this.cbCarName.FormattingEnabled = true;
             this.cbCarName.Location = new System.Drawing.Point(99, 137);
             this.cbCarName.Name = "cbCarName";
@@ -162,7 +160,6 @@
             // 
             // tbReport
             // 
-            this.tbReport.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.carReportBindingSource, "Report", true));
             this.tbReport.Location = new System.Drawing.Point(99, 188);
             this.tbReport.Multiline = true;
             this.tbReport.Name = "tbReport";
@@ -207,7 +204,6 @@
             this.pbPicture.Size = new System.Drawing.Size(237, 217);
             this.pbPicture.TabIndex = 7;
             this.pbPicture.TabStop = false;
-            
             // 
             // btAdd
             // 

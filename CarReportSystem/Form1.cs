@@ -72,14 +72,14 @@ namespace CarReportSystem
         //選択
         private void dgvCarReportData_Click(object sender, EventArgs e)
         {
-
-
+            var maker = dgvCarReportData.CurrentRow.Cells[3].Value;
             if (dgvCarReportData != null)
             {
                 //選択したレコードのインデックスで指定した項目を取り出す。
-                var maker = dgvCarReportData.CurrentRow.Cells[3].Value;//選択している行の指定したセルの値を取得
-                rbJudgmenton();
+                SetData();
+                rbJudgmenton((string)maker);
                 initButon();
+                
             }
 
             /*if (_carReports.Count != 0)
@@ -97,7 +97,16 @@ namespace CarReportSystem
                 pictureButon();
             }*/
         }
-
+        //選択したデータの表示
+        public void SetData()
+        {
+            var author = dgvCarReportData.CurrentRow.Cells[2].Value;//選択している行の指定したセルの値を取得
+            var name = dgvCarReportData.CurrentRow.Cells[4].Value;//選択している行の指定したセルの値を取得
+            var report = dgvCarReportData.CurrentRow.Cells[5].Value;//選択している行の指定したセルの値を取得
+            cbAuthor.Text = author.ToString();
+            cbCarName.Text = name.ToString();
+            tbReport.Text = report.ToString();
+        }
         //修正
         private void btFix_Click(object sender, EventArgs e)
         {
@@ -168,31 +177,23 @@ namespace CarReportSystem
             this.carReportTableAdapter.Fill(this.infosys202026DataSet.CarReport);
             dgvCarReportData.ClearSelection();
             
-            //if (ofdOpenData.ShowDialog() == DialogResult.OK)
-            //{
-            //
-            //    using (FileStream fs = new FileStream(ofdOpenData.FileName, FileMode.Open))
-            //    {
-            //        try
-            //        {
-            //            BinaryFormatter formatter = new BinaryFormatter();
-            //
-            //            //逆シリアル化して読み込む
-            //            _carReports = (BindingList<CarReport>)formatter.Deserialize(fs);
-            //            dgvCarReportData.DataSource = _carReports;
-            //            //dgvCarData_Click(sender, e);
-            //            // 選択を解除
-            //            dgvCarReportData.ClearSelection();
-            //
-            //        } catch (SerializationException se)
-            //        {
-            //            Console.WriteLine("Failed to deserialize. Reason: " + se.Message);
-            //            throw;
-            //        }
-            //    }
-            //    initButon();
-            //    pbSizemdoe();
-            //}
+            
+        }
+
+        // バイト配列をImageオブジェクトに変換
+        public static Image ByteArrayToImage(byte[] byteData)
+        {
+            ImageConverter imgconv = new ImageConverter();
+            Image img = (Image)imgconv.ConvertFrom(byteData);
+            return img;
+        }
+
+        // Imageオブジェクトをバイト配列に変換
+        public static byte[] ImageToByteArray(Image img)
+        {
+            ImageConverter imgconv = new ImageConverter();
+            byte[] byteData = (byte[])imgconv.ConvertTo(img, typeof(byte[]));
+            return byteData;
         }
 
         //保存
@@ -258,9 +259,9 @@ namespace CarReportSystem
         }
 
         //選択行のラジオボタンをオンにする
-        private void rbJudgmenton()
+        private void rbJudgmenton(string maker)
         {
-            var maker = dgvCarReportData.CurrentRow.Cells[3].Value;
+            
 
             switch (maker.ToString())
             {
@@ -279,7 +280,7 @@ namespace CarReportSystem
                 case "ホンダ":
                     rbHonda.Checked = true;
                     break;
-                case"その他":
+                default:
                     rbAnother.Checked = true;
                     break;
             }
