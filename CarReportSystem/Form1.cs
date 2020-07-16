@@ -78,8 +78,7 @@ namespace CarReportSystem
                 //選択したレコードのインデックスで指定した項目を取り出す。
                 SetData();
                 rbJudgmenton((string)maker);
-                initButon();
-                
+                initButon();  
             }
 
             /*if (_carReports.Count != 0)
@@ -110,6 +109,12 @@ namespace CarReportSystem
         //修正
         private void btFix_Click(object sender, EventArgs e)
         {
+#if true
+            dgvCarReportData.CurrentRow.Cells[2].Value = cbAuthor.Text;//選択している行の指定したセルの値を取得
+            dgvCarReportData.CurrentRow.Cells[4].Value = cbCarName.Text;//選択している行の指定したセルの値を取得
+            var report = dgvCarReportData.CurrentRow.Cells[5].Value = tbReport.Text;//選択している行の指定したセルの値を取得
+
+#else
             foreach (DataGridViewRow row in dgvCarReportData.SelectedRows)
             {
                 CarReport selectedreport = _carReports[dgvCarReportData.CurrentRow.Index];
@@ -126,9 +131,12 @@ namespace CarReportSystem
                 InitedAllClear();
                 dgvCarReportData.ClearSelection();
             }
+#endif
             initButon();
             pictureButon();
-            dgvCarReportData.ClearSelection();
+            this.Validate();
+            this.carReportBindingSource.EndEdit();
+            this.tableAdapterManager.UpdateAll(this.infosys202026DataSet);
         }
 
         //入力項目の削除

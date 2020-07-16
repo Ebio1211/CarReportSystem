@@ -386,6 +386,7 @@
             // 
             // dgvCarReportData
             // 
+            this.dgvCarReportData.AllowUserToAddRows = false;
             this.dgvCarReportData.AutoGenerateColumns = false;
             this.dgvCarReportData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCarReportData.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
