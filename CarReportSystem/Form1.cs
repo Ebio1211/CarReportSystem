@@ -80,60 +80,44 @@ namespace CarReportSystem
                 rbJudgmenton((string)maker);
                 initButon();  
             }
-
-            /*if (_carReports.Count != 0)
-            {
-                //行の選択
-                CarReport selectedreport = _carReports[dgvCarReportData.CurrentRow.Index];
-                //選択行の表示
-                dtpCreatedDate.Value = selectedreport.CreatedDate;
-                cbAuthor.Text = selectedreport.Author;
-                rbJudgmenton();
-                cbCarName.Text = selectedreport.Name;
-                tbReport.Text = selectedreport.Report;
-                pbPicture.Image = selectedreport.Picture;
-                initButon();
-                pictureButon();
-            }*/
         }
         //選択したデータの表示
         public void SetData()
         {
+            var createddate = dgvCarReportData.CurrentRow.Cells[1].Value;//選択している行の指定したセルの値を取得
             var author = dgvCarReportData.CurrentRow.Cells[2].Value;//選択している行の指定したセルの値を取得
             var name = dgvCarReportData.CurrentRow.Cells[4].Value;//選択している行の指定したセルの値を取得
             var report = dgvCarReportData.CurrentRow.Cells[5].Value;//選択している行の指定したセルの値を取得
+            var byteData = dgvCarReportData.CurrentRow.Cells[6].Value;
+
+            dtpCreatedDate.Value = (DateTime)createddate;
             cbAuthor.Text = author.ToString();
             cbCarName.Text = name.ToString();
             tbReport.Text = report.ToString();
+            if (dgvCarReportData.CurrentRow.Cells[6].Value != null)
+            {
+                pbPicture.Image = ByteArrayToImage((byte[])byteData);
+                pbSizemdoe();
+                pictureButon();
+            }
+
         }
         //修正
         private void btFix_Click(object sender, EventArgs e)
         {
-#if true
+            dgvCarReportData.CurrentRow.Cells[1].Value = dtpCreatedDate.Value;//選択している行の指定したセルの値を取得
             dgvCarReportData.CurrentRow.Cells[2].Value = cbAuthor.Text;//選択している行の指定したセルの値を取得
             dgvCarReportData.CurrentRow.Cells[4].Value = cbCarName.Text;//選択している行の指定したセルの値を取得
-            var report = dgvCarReportData.CurrentRow.Cells[5].Value = tbReport.Text;//選択している行の指定したセルの値を取得
-
-#else
-            foreach (DataGridViewRow row in dgvCarReportData.SelectedRows)
-            {
-                CarReport selectedreport = _carReports[dgvCarReportData.CurrentRow.Index];
-
-                //修正の上書き
-                selectedreport.CreatedDate = dtpCreatedDate.Value;
-                selectedreport.Author = cbAuthor.Text;
-                selectedreport.Maker = carmaker();
-                selectedreport.Name = cbCarName.Text;
-                selectedreport.Report = tbReport.Text;
-                selectedreport.Picture = pbPicture.Image;
-
-                dgvCarReportData.Refresh();
-                InitedAllClear();
-                dgvCarReportData.ClearSelection();
-            }
-#endif
+            dgvCarReportData.CurrentRow.Cells[5].Value = tbReport.Text;//選択している行の指定したセルの値を取得
+            string maker = carmaker().ToString();
+            dgvCarReportData.CurrentRow.Cells[3].Value = maker;
+            var img = dgvCarReportData.CurrentRow.Cells[6].Value = pbPicture.Image;
             initButon();
             pictureButon();
+            if (dgvCarReportData.CurrentRow.Cells[6].Value != null)
+            { 
+                ImageToByteArray((Image)img);
+            }
             this.Validate();
             this.carReportBindingSource.EndEdit();
             this.tableAdapterManager.UpdateAll(this.infosys202026DataSet);
@@ -166,6 +150,9 @@ namespace CarReportSystem
         private void btPictureDelete_Click(object sender, EventArgs e)
         {
             pbPicture.Image = null;
+            this.Validate();
+            this.carReportBindingSource.EndEdit();
+            this.tableAdapterManager.UpdateAll(this.infosys202026DataSet);
         }
 
         //削除
@@ -184,8 +171,9 @@ namespace CarReportSystem
         {
             this.carReportTableAdapter.Fill(this.infosys202026DataSet.CarReport);
             dgvCarReportData.ClearSelection();
-            
-            
+            btSave.Enabled = true;
+
+
         }
 
         // バイト配列をImageオブジェクトに変換
@@ -207,27 +195,11 @@ namespace CarReportSystem
         //保存
         private void btSave_Click(object sender, EventArgs e)
         {
-            if (_carReports.Count > 0)
-            {
-                if (sfdSaveData.ShowDialog() == DialogResult.OK)
-                {
-                    BinaryFormatter formatter = new BinaryFormatter();
+            //データベース更新
+            this.Validate();
+            this.carReportBindingSource.EndEdit();
+            this.tableAdapterManager.UpdateAll(this.infosys202026DataSet);
 
-                    using (FileStream fs = new FileStream(sfdSaveData.FileName, FileMode.Create))
-                    {
-                        try
-                        {
-                            //シリアル化して保存
-                            formatter.Serialize(fs, _carReports);
-                        } catch (SerializationException se)
-                        {
-                            Console.WriteLine("Failed to serialize. Reason: " + se.Message);
-                            throw;
-                        }
-                    }
-                }
-            }
-            
         }
 
         //終了
@@ -292,25 +264,6 @@ namespace CarReportSystem
                     rbAnother.Checked = true;
                     break;
             }
-            /*if (maker.ToString() == "スバル")
-            {
-                rbSubaru.Checked = true;
-            } else if (maker.ToString() == "トヨタ")
-            {
-                rbToyota.Checked = true;
-            } else if (maker.ToString() == "外車")
-            {
-                rbGaisya.Checked = true;
-            } else if (maker.ToString() == "日産")
-            {
-                rbNissan.Checked = true;
-            } else if (maker.ToString() =="ホンダ")
-            {
-                rbHonda.Checked = true;
-            } else
-            {
-                rbAnother.Checked = true;
-            }*/
         }
 
         //変更と削除と保存のボタンのマスク解除とマスク化メソッド
@@ -324,13 +277,6 @@ namespace CarReportSystem
             {
                 btFix.Enabled = true;
                 btDelete.Enabled = true;
-            }
-            if (_carReports.Count <= 0)
-            {
-                btSave.Enabled = false;
-            } else
-            {
-                btSave.Enabled = true;
             }
             //if (_carReports.Count <= 0)
             //{
@@ -363,7 +309,7 @@ namespace CarReportSystem
         private void Form1_Load(object sender, EventArgs e)
         {
             // TODO: このコード行はデータを 'infosys202026DataSet.CarReport' テーブルに読み込みます。必要に応じて移動、または削除をしてください。
-            
+            btSave.Enabled = false;
             dgvCarReportData.Columns[0].Visible = false;
             initButon();
             pictureButon();
@@ -375,6 +321,7 @@ namespace CarReportSystem
             _carReports.Clear();
             initButon();
             pictureButon();
+            
         }
 
         private void carReportBindingNavigatorSaveItem_Click(object sender, EventArgs e)

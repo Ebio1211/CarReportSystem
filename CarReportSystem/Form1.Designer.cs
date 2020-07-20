@@ -90,7 +90,6 @@
             // 
             // dtpCreatedDate
             // 
-            this.dtpCreatedDate.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.carReportBindingSource, "CreatedDate", true));
             this.dtpCreatedDate.Location = new System.Drawing.Point(99, 17);
             this.dtpCreatedDate.Name = "dtpCreatedDate";
             this.dtpCreatedDate.Size = new System.Drawing.Size(200, 19);
