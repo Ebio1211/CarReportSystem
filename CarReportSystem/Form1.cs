@@ -88,13 +88,13 @@ namespace CarReportSystem
             var author = dgvCarReportData.CurrentRow.Cells[2].Value;//選択している行の指定したセルの値を取得
             var name = dgvCarReportData.CurrentRow.Cells[4].Value;//選択している行の指定したセルの値を取得
             var report = dgvCarReportData.CurrentRow.Cells[5].Value;//選択している行の指定したセルの値を取得
-            var byteData = dgvCarReportData.CurrentRow.Cells[6].Value;
+            var byteData = dgvCarReportData.CurrentRow.Cells[6].Value = pbPicture.Image;
 
             dtpCreatedDate.Value = (DateTime)createddate;
             cbAuthor.Text = author.ToString();
             cbCarName.Text = name.ToString();
             tbReport.Text = report.ToString();
-            if (dgvCarReportData.CurrentRow.Cells[6].Value != null)
+            if (byteData != null)
             {
                 pbPicture.Image = ByteArrayToImage((byte[])byteData);
                 pbSizemdoe();
@@ -114,10 +114,12 @@ namespace CarReportSystem
             var img = dgvCarReportData.CurrentRow.Cells[6].Value = pbPicture.Image;
             initButon();
             pictureButon();
-            if (dgvCarReportData.CurrentRow.Cells[6].Value != null)
-            { 
+            if (img != null)
+            {
                 ImageToByteArray((Image)img);
             }
+
+
             this.Validate();
             this.carReportBindingSource.EndEdit();
             this.tableAdapterManager.UpdateAll(this.infosys202026DataSet);
