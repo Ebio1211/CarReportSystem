@@ -75,6 +75,7 @@ namespace CarReportSystem
             var maker = dgvCarReportData.CurrentRow.Cells[3].Value;
             if (dgvCarReportData != null)
             {
+                InitedAllClear();
                 //選択したレコードのインデックスで指定した項目を取り出す。
                 SetData();
                 rbJudgmenton((string)maker);
@@ -88,13 +89,14 @@ namespace CarReportSystem
             var author = dgvCarReportData.CurrentRow.Cells[2].Value;//選択している行の指定したセルの値を取得
             var name = dgvCarReportData.CurrentRow.Cells[4].Value;//選択している行の指定したセルの値を取得
             var report = dgvCarReportData.CurrentRow.Cells[5].Value;//選択している行の指定したセルの値を取得
-            var byteData = dgvCarReportData.CurrentRow.Cells[6].Value = pbPicture.Image;
+            var byteData = dgvCarReportData.CurrentRow.Cells[6].Value;
 
+            
             dtpCreatedDate.Value = (DateTime)createddate;
             cbAuthor.Text = author.ToString();
             cbCarName.Text = name.ToString();
             tbReport.Text = report.ToString();
-            if (byteData != null)
+            if (!string.IsNullOrWhiteSpace(byteData.ToString()))
             {
                 pbPicture.Image = ByteArrayToImage((byte[])byteData);
                 pbSizemdoe();
@@ -112,13 +114,12 @@ namespace CarReportSystem
             string maker = carmaker().ToString();
             dgvCarReportData.CurrentRow.Cells[3].Value = maker;
             var img = dgvCarReportData.CurrentRow.Cells[6].Value = pbPicture.Image;
+            
             initButon();
             pictureButon();
-            if (img != null)
-            {
-                ImageToByteArray((Image)img);
-            }
-
+            ImageToByteArray((Image)img);
+            InitedAllClear();
+            dgvCarReportData.ClearSelection();
 
             this.Validate();
             this.carReportBindingSource.EndEdit();
