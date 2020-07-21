@@ -90,18 +90,22 @@ namespace CarReportSystem
             var author = dgvCarReportData.CurrentRow.Cells[2].Value;//選択している行の指定したセルの値を取得
             var name = dgvCarReportData.CurrentRow.Cells[4].Value;//選択している行の指定したセルの値を取得
             var report = dgvCarReportData.CurrentRow.Cells[5].Value;//選択している行の指定したセルの値を取得
-            var byteData = dgvCarReportData.CurrentRow.Cells[6].Value;
 
-            
             dtpCreatedDate.Value = (DateTime)createddate;
             cbAuthor.Text = author.ToString();
             cbCarName.Text = name.ToString();
             tbReport.Text = report.ToString();
-            if (!string.IsNullOrWhiteSpace(byteData.ToString()))
+
+            try
             {
-                pbPicture.Image = ByteArrayToImage((byte[])byteData);
+                pbPicture.Image = ByteArrayToImage((byte[])dgvCarReportData.CurrentRow.Cells[6].Value);
                 pbSizemdoe();
-                pictureButon();
+            } catch (InvalidCastException)
+            {
+                pbPicture.Image = null;
+            } catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
 
         }
