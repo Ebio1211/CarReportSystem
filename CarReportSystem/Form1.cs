@@ -16,7 +16,7 @@ namespace CarReportSystem
 {
     public partial class Form1 : Form
     {
-        BindingList<CarReport> _carReports = new BindingList<CarReport>();
+        BindingList<infosys202026DataSet> _carReports = new BindingList<infosys202026DataSet>();
 
         public Form1()
         {
@@ -28,6 +28,7 @@ namespace CarReportSystem
         {
             /*CarReport carReport = new CarReport
             {
+
                 CreatedDate = dtpCreatedDate.Value,
                 Author = cbAuthor.Text,
                 Maker = carmaker(),
@@ -161,12 +162,18 @@ namespace CarReportSystem
         //削除
         private void btDelete_Click(object sender, EventArgs e)
         {
-            foreach (DataGridViewRow row in this.dgvCarReportData.SelectedRows)
+            if (MessageBox.Show("本当に削除しますか？", "メッセージ", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                dgvCarReportData.Rows.Remove(row);
+                foreach (DataGridViewRow row in this.dgvCarReportData.SelectedRows)
+                {
+                    dgvCarReportData.Rows.Remove(row);
+                }
+                InitedAllClear();
+                dgvCarReportData.ClearSelection();
+                this.Validate();
+                this.carReportBindingSource.EndEdit();
+                this.tableAdapterManager.UpdateAll(this.infosys202026DataSet);
             }
-            InitedAllClear();
-            dgvCarReportData.ClearSelection();
         }
 
         //データベースに接続
