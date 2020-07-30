@@ -100,6 +100,7 @@ namespace CarReportSystem
             {
                 pbPicture.Image = ByteArrayToImage((byte[])dgvCarReportData.CurrentRow.Cells[6].Value);
                 pbSizemdoe();
+                pictureButon();
             } catch (InvalidCastException)
             {
                 pbPicture.Image = null;
@@ -118,11 +119,16 @@ namespace CarReportSystem
             dgvCarReportData.CurrentRow.Cells[5].Value = tbReport.Text;//選択している行の指定したセルの値を取得
             string maker = carmaker().ToString();
             dgvCarReportData.CurrentRow.Cells[3].Value = maker;
-            var img = dgvCarReportData.CurrentRow.Cells[6].Value = pbPicture.Image;
             
             initButon();
             pictureButon();
-            ImageToByteArray((Image)img);
+            if (pbPicture.Image != null)
+            {
+                dgvCarReportData.CurrentRow.Cells[6].Value = ImageToByteArray(pbPicture.Image);
+            } else
+            {
+                dgvCarReportData.CurrentRow.Cells[6].Value = null;
+            }
             InitedAllClear();
             dgvCarReportData.ClearSelection();
 
@@ -346,5 +352,15 @@ namespace CarReportSystem
 
         }
 
+        private void btSearchExe_Click(object sender, EventArgs e)
+        {
+            if (rbAnd.Checked == true)
+            {
+                this.carReportTableAdapter.FillByAndDate(this.infosys202026DataSet.CarReport, dtpSearchCreatedDate.Value.ToString(), tbSearchCarName.Text, tbSearchMaker.Text);
+            } else if (rbOr.Checked == true)
+            {
+                this.carReportTableAdapter.FillByOrDate(this.infosys202026DataSet.CarReport, dtpSearchCreatedDate.Value.ToString(), tbSearchCarName.Text, tbSearchMaker.Text);
+            }
+        }
     }
 }

@@ -31,8 +31,6 @@
             this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.dtpCreatedDate = new System.Windows.Forms.DateTimePicker();
-            this.carReportBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.infosys202026DataSet = new CarReportSystem.infosys202026DataSet();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -62,9 +60,14 @@
             this.ofdOpenData = new System.Windows.Forms.OpenFileDialog();
             this.sfdSaveData = new System.Windows.Forms.SaveFileDialog();
             this.btnewdata = new System.Windows.Forms.Button();
-            this.carReportTableAdapter = new CarReportSystem.infosys202026DataSetTableAdapters.CarReportTableAdapter();
-            this.tableAdapterManager = new CarReportSystem.infosys202026DataSetTableAdapters.TableAdapterManager();
             this.dgvCarReportData = new System.Windows.Forms.DataGridView();
+            this.tbSearchCarName = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.dtpSearchCreatedDate = new System.Windows.Forms.DateTimePicker();
+            this.btSearchExe = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
+            this.tbSearchMaker = new System.Windows.Forms.TextBox();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -72,11 +75,20 @@
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.carReportBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.infosys202026DataSet)).BeginInit();
+            this.carReportBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.infosys202026DataSet = new CarReportSystem.infosys202026DataSet();
+            this.carReportTableAdapter = new CarReportSystem.infosys202026DataSetTableAdapters.CarReportTableAdapter();
+            this.tableAdapterManager = new CarReportSystem.infosys202026DataSetTableAdapters.TableAdapterManager();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.rbAnd = new System.Windows.Forms.RadioButton();
+            this.rbOr = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.pbPicture)).BeginInit();
             this.gbMaker.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarReportData)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.carReportBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.infosys202026DataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -94,16 +106,6 @@
             this.dtpCreatedDate.Name = "dtpCreatedDate";
             this.dtpCreatedDate.Size = new System.Drawing.Size(200, 19);
             this.dtpCreatedDate.TabIndex = 1;
-            // 
-            // carReportBindingSource
-            // 
-            this.carReportBindingSource.DataMember = "CarReport";
-            this.carReportBindingSource.DataSource = this.infosys202026DataSet;
-            // 
-            // infosys202026DataSet
-            // 
-            this.infosys202026DataSet.DataSetName = "infosys202026DataSet";
-            this.infosys202026DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // label2
             // 
@@ -208,7 +210,7 @@
             // 
             this.btAdd.Location = new System.Drawing.Point(506, 279);
             this.btAdd.Name = "btAdd";
-            this.btAdd.Size = new System.Drawing.Size(57, 20);
+            this.btAdd.Size = new System.Drawing.Size(57, 29);
             this.btAdd.TabIndex = 6;
             this.btAdd.Text = "追加";
             this.btAdd.UseVisualStyleBackColor = true;
@@ -218,7 +220,7 @@
             // 
             this.btFix.Location = new System.Drawing.Point(601, 279);
             this.btFix.Name = "btFix";
-            this.btFix.Size = new System.Drawing.Size(57, 20);
+            this.btFix.Size = new System.Drawing.Size(57, 29);
             this.btFix.TabIndex = 6;
             this.btFix.Text = "修正";
             this.btFix.UseVisualStyleBackColor = true;
@@ -228,7 +230,7 @@
             // 
             this.btDelete.Location = new System.Drawing.Point(686, 279);
             this.btDelete.Name = "btDelete";
-            this.btDelete.Size = new System.Drawing.Size(57, 20);
+            this.btDelete.Size = new System.Drawing.Size(57, 29);
             this.btDelete.TabIndex = 6;
             this.btDelete.Text = "削除";
             this.btDelete.UseVisualStyleBackColor = true;
@@ -373,16 +375,6 @@
             this.btnewdata.UseVisualStyleBackColor = true;
             this.btnewdata.Click += new System.EventHandler(this.btnewdata_Click);
             // 
-            // carReportTableAdapter
-            // 
-            this.carReportTableAdapter.ClearBeforeFill = true;
-            // 
-            // tableAdapterManager
-            // 
-            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.CarReportTableAdapter = this.carReportTableAdapter;
-            this.tableAdapterManager.UpdateOrder = CarReportSystem.infosys202026DataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
-            // 
             // dgvCarReportData
             // 
             this.dgvCarReportData.AllowUserToAddRows = false;
@@ -406,6 +398,75 @@
             this.dgvCarReportData.Size = new System.Drawing.Size(647, 193);
             this.dgvCarReportData.TabIndex = 23;
             this.dgvCarReportData.Click += new System.EventHandler(this.dgvCarReportData_Click);
+            // 
+            // tbSearchCarName
+            // 
+            this.tbSearchCarName.Location = new System.Drawing.Point(3, 59);
+            this.tbSearchCarName.Name = "tbSearchCarName";
+            this.tbSearchCarName.Size = new System.Drawing.Size(286, 19);
+            this.tbSearchCarName.TabIndex = 24;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(1, 39);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(29, 12);
+            this.label8.TabIndex = 25;
+            this.label8.Text = "車名";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.groupBox1.Controls.Add(this.rbOr);
+            this.groupBox1.Controls.Add(this.rbAnd);
+            this.groupBox1.Controls.Add(this.dtpSearchCreatedDate);
+            this.groupBox1.Controls.Add(this.btSearchExe);
+            this.groupBox1.Controls.Add(this.label10);
+            this.groupBox1.Controls.Add(this.label9);
+            this.groupBox1.Controls.Add(this.label11);
+            this.groupBox1.Controls.Add(this.label8);
+            this.groupBox1.Controls.Add(this.tbSearchMaker);
+            this.groupBox1.Controls.Add(this.tbSearchCarName);
+            this.groupBox1.Location = new System.Drawing.Point(782, 56);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(295, 217);
+            this.groupBox1.TabIndex = 26;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "検索";
+            // 
+            // dtpSearchCreatedDate
+            // 
+            this.dtpSearchCreatedDate.Location = new System.Drawing.Point(3, 112);
+            this.dtpSearchCreatedDate.Name = "dtpSearchCreatedDate";
+            this.dtpSearchCreatedDate.Size = new System.Drawing.Size(286, 19);
+            this.dtpSearchCreatedDate.TabIndex = 32;
+            // 
+            // btSearchExe
+            // 
+            this.btSearchExe.Location = new System.Drawing.Point(96, 185);
+            this.btSearchExe.Name = "btSearchExe";
+            this.btSearchExe.Size = new System.Drawing.Size(75, 23);
+            this.btSearchExe.TabIndex = 26;
+            this.btSearchExe.Text = "実行";
+            this.btSearchExe.UseVisualStyleBackColor = true;
+            this.btSearchExe.Click += new System.EventHandler(this.btSearchExe_Click);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(1, 145);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(42, 12);
+            this.label10.TabIndex = 25;
+            this.label10.Text = "メーカー";
+            // 
+            // tbSearchMaker
+            // 
+            this.tbSearchMaker.Location = new System.Drawing.Point(3, 160);
+            this.tbSearchMaker.Name = "tbSearchMaker";
+            this.tbSearchMaker.Size = new System.Drawing.Size(286, 19);
+            this.tbSearchMaker.TabIndex = 24;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -456,11 +517,72 @@
             this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
             this.dataGridViewImageColumn1.ReadOnly = true;
             // 
+            // carReportBindingSource
+            // 
+            this.carReportBindingSource.DataMember = "CarReport";
+            this.carReportBindingSource.DataSource = this.infosys202026DataSet;
+            // 
+            // infosys202026DataSet
+            // 
+            this.infosys202026DataSet.DataSetName = "infosys202026DataSet";
+            this.infosys202026DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // carReportTableAdapter
+            // 
+            this.carReportTableAdapter.ClearBeforeFill = true;
+            // 
+            // tableAdapterManager
+            // 
+            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.CarReportTableAdapter = this.carReportTableAdapter;
+            this.tableAdapterManager.UpdateOrder = CarReportSystem.infosys202026DataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(1, 97);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(29, 12);
+            this.label9.TabIndex = 25;
+            this.label9.Text = "日付";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(50, 15);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(59, 12);
+            this.label11.TabIndex = 25;
+            this.label11.Text = "検索方法：";
+            // 
+            // rbAnd
+            // 
+            this.rbAnd.AutoSize = true;
+            this.rbAnd.Location = new System.Drawing.Point(116, 15);
+            this.rbAnd.Name = "rbAnd";
+            this.rbAnd.Size = new System.Drawing.Size(47, 16);
+            this.rbAnd.TabIndex = 33;
+            this.rbAnd.TabStop = true;
+            this.rbAnd.Text = "AND";
+            this.rbAnd.UseVisualStyleBackColor = true;
+            // 
+            // rbOr
+            // 
+            this.rbOr.AutoSize = true;
+            this.rbOr.Location = new System.Drawing.Point(169, 15);
+            this.rbOr.Name = "rbOr";
+            this.rbOr.Size = new System.Drawing.Size(39, 16);
+            this.rbOr.TabIndex = 33;
+            this.rbOr.TabStop = true;
+            this.rbOr.Text = "OR";
+            this.rbOr.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(763, 568);
+            this.ClientSize = new System.Drawing.Size(1089, 568);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dgvCarReportData);
             this.Controls.Add(this.btnewdata);
             this.Controls.Add(this.gbMaker);
@@ -487,12 +609,14 @@
             this.Name = "Form1";
             this.Text = "試乗レポート管理システム";
             this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.carReportBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.infosys202026DataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbPicture)).EndInit();
             this.gbMaker.ResumeLayout(false);
             this.gbMaker.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarReportData)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.carReportBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.infosys202026DataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -543,6 +667,17 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
+        private System.Windows.Forms.TextBox tbSearchCarName;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button btSearchExe;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox tbSearchMaker;
+        private System.Windows.Forms.DateTimePicker dtpSearchCreatedDate;
+        private System.Windows.Forms.RadioButton rbOr;
+        private System.Windows.Forms.RadioButton rbAnd;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label11;
     }
 }
 
