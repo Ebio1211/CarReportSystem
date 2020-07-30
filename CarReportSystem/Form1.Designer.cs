@@ -68,6 +68,10 @@
             this.btSearchExe = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.tbSearchMaker = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.rbAnd = new System.Windows.Forms.RadioButton();
+            this.rbOr = new System.Windows.Forms.RadioButton();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -79,10 +83,6 @@
             this.infosys202026DataSet = new CarReportSystem.infosys202026DataSet();
             this.carReportTableAdapter = new CarReportSystem.infosys202026DataSetTableAdapters.CarReportTableAdapter();
             this.tableAdapterManager = new CarReportSystem.infosys202026DataSetTableAdapters.TableAdapterManager();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.rbAnd = new System.Windows.Forms.RadioButton();
-            this.rbOr = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.pbPicture)).BeginInit();
             this.gbMaker.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarReportData)).BeginInit();
@@ -468,6 +468,46 @@
             this.tbSearchMaker.Size = new System.Drawing.Size(286, 19);
             this.tbSearchMaker.TabIndex = 24;
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(1, 97);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(29, 12);
+            this.label9.TabIndex = 25;
+            this.label9.Text = "日付";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(50, 15);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(59, 12);
+            this.label11.TabIndex = 25;
+            this.label11.Text = "検索方法：";
+            // 
+            // rbAnd
+            // 
+            this.rbAnd.AutoSize = true;
+            this.rbAnd.Location = new System.Drawing.Point(116, 15);
+            this.rbAnd.Name = "rbAnd";
+            this.rbAnd.Size = new System.Drawing.Size(47, 16);
+            this.rbAnd.TabIndex = 33;
+            this.rbAnd.Text = "AND";
+            this.rbAnd.UseVisualStyleBackColor = true;
+            // 
+            // rbOr
+            // 
+            this.rbOr.AutoSize = true;
+            this.rbOr.Checked = true;
+            this.rbOr.Location = new System.Drawing.Point(169, 15);
+            this.rbOr.Name = "rbOr";
+            this.rbOr.Size = new System.Drawing.Size(39, 16);
+            this.rbOr.TabIndex = 33;
+            this.rbOr.TabStop = true;
+            this.rbOr.Text = "OR";
+            this.rbOr.UseVisualStyleBackColor = true;
+            // 
             // dataGridViewTextBoxColumn1
             // 
             this.dataGridViewTextBoxColumn1.DataPropertyName = "Id";
@@ -536,46 +576,6 @@
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
             this.tableAdapterManager.CarReportTableAdapter = this.carReportTableAdapter;
             this.tableAdapterManager.UpdateOrder = CarReportSystem.infosys202026DataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(1, 97);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(29, 12);
-            this.label9.TabIndex = 25;
-            this.label9.Text = "日付";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(50, 15);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(59, 12);
-            this.label11.TabIndex = 25;
-            this.label11.Text = "検索方法：";
-            // 
-            // rbAnd
-            // 
-            this.rbAnd.AutoSize = true;
-            this.rbAnd.Location = new System.Drawing.Point(116, 15);
-            this.rbAnd.Name = "rbAnd";
-            this.rbAnd.Size = new System.Drawing.Size(47, 16);
-            this.rbAnd.TabIndex = 33;
-            this.rbAnd.TabStop = true;
-            this.rbAnd.Text = "AND";
-            this.rbAnd.UseVisualStyleBackColor = true;
-            // 
-            // rbOr
-            // 
-            this.rbOr.AutoSize = true;
-            this.rbOr.Location = new System.Drawing.Point(169, 15);
-            this.rbOr.Name = "rbOr";
-            this.rbOr.Size = new System.Drawing.Size(39, 16);
-            this.rbOr.TabIndex = 33;
-            this.rbOr.TabStop = true;
-            this.rbOr.Text = "OR";
-            this.rbOr.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 

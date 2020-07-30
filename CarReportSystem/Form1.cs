@@ -356,10 +356,24 @@ namespace CarReportSystem
         {
             if (rbAnd.Checked == true)
             {
-                this.carReportTableAdapter.FillByAndDate(this.infosys202026DataSet.CarReport, dtpSearchCreatedDate.Value.ToString(), tbSearchCarName.Text, tbSearchMaker.Text);
+                if (string.IsNullOrEmpty(tbSearchCarName.Text) || string.IsNullOrEmpty(tbSearchMaker.Text))
+                {
+                    this.carReportTableAdapter.FillBycreateddate(this.infosys202026DataSet.CarReport, dtpSearchCreatedDate.Value.ToString());
+                } else
+                {
+                    this.carReportTableAdapter.FillByAndDate(this.infosys202026DataSet.CarReport, dtpSearchCreatedDate.Value.ToString(), tbSearchCarName.Text, tbSearchMaker.Text);
+                }
+                
             } else if (rbOr.Checked == true)
             {
-                this.carReportTableAdapter.FillByOrDate(this.infosys202026DataSet.CarReport, dtpSearchCreatedDate.Value.ToString(), tbSearchCarName.Text, tbSearchMaker.Text);
+                if (string.IsNullOrEmpty(tbSearchCarName.Text)|| string.IsNullOrEmpty(tbSearchMaker.Text))
+                {
+                    this.carReportTableAdapter.FillBycreateddate(this.infosys202026DataSet.CarReport, dtpSearchCreatedDate.Value.ToString());
+                } else
+                {
+                    this.carReportTableAdapter.FillByOrDate(this.infosys202026DataSet.CarReport, dtpSearchCreatedDate.Value.ToString(), tbSearchCarName.Text, tbSearchMaker.Text);
+                }
+                
             }
         }
     }
