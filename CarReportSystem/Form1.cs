@@ -154,9 +154,12 @@ namespace CarReportSystem
         {
             if (ofdPicture.ShowDialog() == DialogResult.OK)
             {
-                pbPicture.Image = Image.FromFile(ofdPicture.FileName);
-                pbSizemdoe();
-                pictureButon();
+                try
+                {
+                    pbPicture.Image = Image.FromFile(ofdPicture.FileName);
+                    pbSizemdoe();
+                    pictureButon();
+                } catch (Exception){}
             }
         }
 
